@@ -1,0 +1,874 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fil_rougeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdentifiantClient" />
+          </Key>
+          <Property Name="IdentifiantClient" Type="bigint" Nullable="false" />
+          <Property Name="ReferenceDuClient" Type="bigint" />
+          <Property Name="NomDuClient" Type="varchar" MaxLength="250" />
+          <Property Name="PrenomDuClient" Type="varchar" MaxLength="250" />
+          <Property Name="Coefficient" Type="bigint" />
+          <Property Name="AdresseDuClient" Type="varchar" MaxLength="250" />
+          <Property Name="VilleDuClient" Type="varchar" MaxLength="250" />
+          <Property Name="CodePostalDuClient" Type="bigint" />
+          <Property Name="AdresseMailDuClient" Type="varchar" MaxLength="250" />
+          <Property Name="TelephoneDuClient" Type="bigint" />
+          <Property Name="IdentifiantServiceCommercial" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="IdentifiantCommande" />
+          </Key>
+          <Property Name="IdentifiantCommande" Type="bigint" Nullable="false" />
+          <Property Name="NumeroDeCommande" Type="bigint" />
+          <Property Name="DateDeCommande" Type="datetime" />
+          <Property Name="AdresseDeLivraison" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="VilleDeLivraison" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CodePostalDeLivraison" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="PrixTotalCommande" Type="money" />
+          <Property Name="AdresseDeFacturation" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="VilleDeFacturation" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CodePostalDeFacturation" Type="bigint" Nullable="false" />
+          <Property Name="IdentifiantClient" Type="bigint" />
+          <Property Name="NumeroFacture" Type="bigint" />
+        </EntityType>
+        <EntityType Name="composer">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+            <PropertyRef Name="IdentfiantLieuDeLivraison" />
+          </Key>
+          <Property Name="quantite_livrer" Type="bigint" />
+          <Property Name="PrixVendu" Type="money" />
+          <Property Name="IdentifiantProduit" Type="bigint" Nullable="false" />
+          <Property Name="IdentfiantLieuDeLivraison" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contenir">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+            <PropertyRef Name="IdentifiantCommande" />
+          </Key>
+          <Property Name="quantite" Type="bigint" />
+          <Property Name="PrixDeVente" Type="money" />
+          <Property Name="IdentifiantProduit" Type="bigint" Nullable="false" />
+          <Property Name="IdentifiantCommande" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facture">
+          <Key>
+            <PropertyRef Name="NumeroFacture" />
+          </Key>
+          <Property Name="NumeroFacture" Type="bigint" Nullable="false" />
+          <Property Name="ModePaiementFacture" Type="varchar" MaxLength="250" />
+          <Property Name="DateDeFacture" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="IdentifiantFournisseur" />
+          </Key>
+          <Property Name="IdentifiantFournisseur" Type="bigint" Nullable="false" />
+          <Property Name="Importateur" Type="bit" />
+          <Property Name="NomDuFournisseur" Type="varchar" MaxLength="250" />
+          <Property Name="AdresseDuFournisseur" Type="varchar" MaxLength="500" />
+          <Property Name="VilleDuFournisseur" Type="varchar" MaxLength="250" />
+          <Property Name="CodePostalDuFournisseur" Type="bigint" />
+          <Property Name="AdresseMailDuFournisseur" Type="varchar" MaxLength="250" />
+          <Property Name="TelephoneDuFournisseur" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Livraison">
+          <Key>
+            <PropertyRef Name="IdentifiantLieuDeLivraison" />
+          </Key>
+          <Property Name="IdentifiantLieuDeLivraison" Type="bigint" Nullable="false" />
+          <Property Name="LivraisonPartielle" Type="bit" />
+          <Property Name="DateDeLivraison" Type="datetime" />
+          <Property Name="NumeroDeLivraison" Type="bigint" />
+          <Property Name="BonDeLivraison" Type="varchar" MaxLength="250" />
+          <Property Name="IdentifiantCommande" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+          </Key>
+          <Property Name="IdentifiantProduit" Type="bigint" Nullable="false" />
+          <Property Name="LibelleCourtDuProduit" Type="varchar" MaxLength="200" />
+          <Property Name="LibelleLongDuProduit" Type="varchar" MaxLength="500" />
+          <Property Name="PhotoDuProduit" Type="varchar" MaxLength="250" />
+          <Property Name="PrixDachatDuProduit" Type="money" />
+          <Property Name="ProduitActif" Type="bit" />
+          <Property Name="PrixHorsTaxe" Type="money" />
+          <Property Name="TVA" Type="bigint" />
+          <Property Name="IdentifiantRubrique" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RubriqueDuProduit">
+          <Key>
+            <PropertyRef Name="IdentifiantRubrique" />
+          </Key>
+          <Property Name="IdentifiantRubrique" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomRubrique" Type="varchar" MaxLength="150" />
+          <Property Name="Rubrique_principale" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Service_Commercial">
+          <Key>
+            <PropertyRef Name="IdentifiantServiceCommercial" />
+          </Key>
+          <Property Name="IdentifiantServiceCommercial" Type="bigint" Nullable="false" />
+          <Property Name="NomDuCommercial" Type="varchar" MaxLength="250" />
+          <Property Name="PrenomDuCommercial" Type="varchar" MaxLength="250" />
+          <Property Name="AdresseDuCommercial" Type="varchar" MaxLength="400" />
+          <Property Name="VilleDuCommercial" Type="varchar" MaxLength="250" />
+          <Property Name="CodePostalDuCommercial" Type="bigint" />
+          <Property Name="TelephoneDuCommercial" Type="bigint" />
+          <Property Name="ClientParticulier" Type="bit" />
+          <Property Name="AdresseMailDuCommercial" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="vendre">
+          <Key>
+            <PropertyRef Name="IdentifiantFournisseur" />
+            <PropertyRef Name="IdentifiantProduit" />
+          </Key>
+          <Property Name="ReferenceFournisseurDuProduit" Type="bigint" />
+          <Property Name="IdentifiantFournisseur" Type="bigint" Nullable="false" />
+          <Property Name="IdentifiantProduit" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Client__Identifi__1A14E395">
+          <End Role="Service_Commercial" Type="Self.Service_Commercial" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service_Commercial">
+              <PropertyRef Name="IdentifiantServiceCommercial" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdentifiantServiceCommercial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commande__Identi__1ED998B2">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdentifiantClient" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="IdentifiantClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commande__Numero__1FCDBCEB">
+          <End Role="Facture" Type="Self.Facture" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facture">
+              <PropertyRef Name="NumeroFacture" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="NumeroFacture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__composer__Identf__2F10007B">
+          <End Role="Livraison" Type="Self.Livraison" Multiplicity="1" />
+          <End Role="composer" Type="Self.composer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livraison">
+              <PropertyRef Name="IdentifiantLieuDeLivraison" />
+            </Principal>
+            <Dependent Role="composer">
+              <PropertyRef Name="IdentfiantLieuDeLivraison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__composer__Identi__2E1BDC42">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="composer" Type="Self.composer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="composer">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenir__Identi__2A4B4B5E">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="contenir" Type="Self.contenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="contenir">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenir__Identi__2B3F6F97">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="1" />
+          <End Role="contenir" Type="Self.contenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Principal>
+            <Dependent Role="contenir">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Livraison__Ident__239E4DCF">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Livraison" Type="Self.Livraison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Principal>
+            <Dependent Role="Livraison">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produit__Identif__1367E606">
+          <End Role="RubriqueDuProduit" Type="Self.RubriqueDuProduit" Multiplicity="0..1" />
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RubriqueDuProduit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RubriqueD__Rubri__108B795B">
+          <End Role="RubriqueDuProduit" Type="Self.RubriqueDuProduit" Multiplicity="0..1" />
+          <End Role="RubriqueDuProduit1" Type="Self.RubriqueDuProduit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RubriqueDuProduit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Principal>
+            <Dependent Role="RubriqueDuProduit1">
+              <PropertyRef Name="Rubrique_principale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendre__Identifi__267ABA7A">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="1" />
+          <End Role="vendre" Type="Self.vendre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="IdentifiantFournisseur" />
+            </Principal>
+            <Dependent Role="vendre">
+              <PropertyRef Name="IdentifiantFournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendre__Identifi__276EDEB3">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="vendre" Type="Self.vendre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="vendre">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fil_rougeModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commande" EntityType="Self.Commande" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="composer" EntityType="Self.composer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contenir" EntityType="Self.contenir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facture" EntityType="Self.Facture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Livraison" EntityType="Self.Livraison" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produit" EntityType="Self.Produit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RubriqueDuProduit" EntityType="Self.RubriqueDuProduit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service_Commercial" EntityType="Self.Service_Commercial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendre" EntityType="Self.vendre" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Client__Identifi__1A14E395" Association="Self.FK__Client__Identifi__1A14E395">
+            <End Role="Service_Commercial" EntitySet="Service_Commercial" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commande__Identi__1ED998B2" Association="Self.FK__Commande__Identi__1ED998B2">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commande__Numero__1FCDBCEB" Association="Self.FK__Commande__Numero__1FCDBCEB">
+            <End Role="Facture" EntitySet="Facture" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="FK__composer__Identf__2F10007B" Association="Self.FK__composer__Identf__2F10007B">
+            <End Role="Livraison" EntitySet="Livraison" />
+            <End Role="composer" EntitySet="composer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__composer__Identi__2E1BDC42" Association="Self.FK__composer__Identi__2E1BDC42">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="composer" EntitySet="composer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenir__Identi__2A4B4B5E" Association="Self.FK__contenir__Identi__2A4B4B5E">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="contenir" EntitySet="contenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenir__Identi__2B3F6F97" Association="Self.FK__contenir__Identi__2B3F6F97">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="contenir" EntitySet="contenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Livraison__Ident__239E4DCF" Association="Self.FK__Livraison__Ident__239E4DCF">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="Livraison" EntitySet="Livraison" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produit__Identif__1367E606" Association="Self.FK__Produit__Identif__1367E606">
+            <End Role="RubriqueDuProduit" EntitySet="RubriqueDuProduit" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RubriqueD__Rubri__108B795B" Association="Self.FK__RubriqueD__Rubri__108B795B">
+            <End Role="RubriqueDuProduit" EntitySet="RubriqueDuProduit" />
+            <End Role="RubriqueDuProduit1" EntitySet="RubriqueDuProduit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendre__Identifi__267ABA7A" Association="Self.FK__vendre__Identifi__267ABA7A">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="vendre" EntitySet="vendre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendre__Identifi__276EDEB3" Association="Self.FK__vendre__Identifi__276EDEB3">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="vendre" EntitySet="vendre" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fil_rougeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdentifiantClient" />
+          </Key>
+          <Property Name="IdentifiantClient" Type="Int64" Nullable="false" />
+          <Property Name="ReferenceDuClient" Type="Int64" />
+          <Property Name="NomDuClient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrenomDuClient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Coefficient" Type="Int64" />
+          <Property Name="AdresseDuClient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="VilleDuClient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CodePostalDuClient" Type="Int64" />
+          <Property Name="AdresseMailDuClient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneDuClient" Type="Int64" />
+          <Property Name="IdentifiantServiceCommercial" Type="Int64" />
+          <NavigationProperty Name="Service_Commercial" Relationship="Self.FK__Client__Identifi__1A14E395" FromRole="Client" ToRole="Service_Commercial" />
+          <NavigationProperty Name="Commande" Relationship="Self.FK__Commande__Identi__1ED998B2" FromRole="Client" ToRole="Commande" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="IdentifiantCommande" />
+          </Key>
+          <Property Name="IdentifiantCommande" Type="Int64" Nullable="false" />
+          <Property Name="NumeroDeCommande" Type="Int64" />
+          <Property Name="DateDeCommande" Type="DateTime" Precision="3" />
+          <Property Name="AdresseDeLivraison" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VilleDeLivraison" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodePostalDeLivraison" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrixTotalCommande" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AdresseDeFacturation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VilleDeFacturation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodePostalDeFacturation" Type="Int64" Nullable="false" />
+          <Property Name="IdentifiantClient" Type="Int64" />
+          <Property Name="NumeroFacture" Type="Int64" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Commande__Identi__1ED998B2" FromRole="Commande" ToRole="Client" />
+          <NavigationProperty Name="Facture" Relationship="Self.FK__Commande__Numero__1FCDBCEB" FromRole="Commande" ToRole="Facture" />
+          <NavigationProperty Name="contenir" Relationship="Self.FK__contenir__Identi__2B3F6F97" FromRole="Commande" ToRole="contenir" />
+          <NavigationProperty Name="Livraison" Relationship="Self.FK__Livraison__Ident__239E4DCF" FromRole="Commande" ToRole="Livraison" />
+        </EntityType>
+        <EntityType Name="composer">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+            <PropertyRef Name="IdentfiantLieuDeLivraison" />
+          </Key>
+          <Property Name="quantite_livrer" Type="Int64" />
+          <Property Name="PrixVendu" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IdentifiantProduit" Type="Int64" Nullable="false" />
+          <Property Name="IdentfiantLieuDeLivraison" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Livraison" Relationship="Self.FK__composer__Identf__2F10007B" FromRole="composer" ToRole="Livraison" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__composer__Identi__2E1BDC42" FromRole="composer" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="contenir">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+            <PropertyRef Name="IdentifiantCommande" />
+          </Key>
+          <Property Name="quantite" Type="Int64" />
+          <Property Name="PrixDeVente" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IdentifiantProduit" Type="Int64" Nullable="false" />
+          <Property Name="IdentifiantCommande" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Commande" Relationship="Self.FK__contenir__Identi__2B3F6F97" FromRole="contenir" ToRole="Commande" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__contenir__Identi__2A4B4B5E" FromRole="contenir" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="Facture">
+          <Key>
+            <PropertyRef Name="NumeroFacture" />
+          </Key>
+          <Property Name="NumeroFacture" Type="Int64" Nullable="false" />
+          <Property Name="ModePaiementFacture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DateDeFacture" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Commande" Relationship="Self.FK__Commande__Numero__1FCDBCEB" FromRole="Facture" ToRole="Commande" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="IdentifiantFournisseur" />
+          </Key>
+          <Property Name="IdentifiantFournisseur" Type="Int64" Nullable="false" />
+          <Property Name="Importateur" Type="Boolean" />
+          <Property Name="NomDuFournisseur" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AdresseDuFournisseur" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VilleDuFournisseur" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CodePostalDuFournisseur" Type="Int64" />
+          <Property Name="AdresseMailDuFournisseur" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneDuFournisseur" Type="Int64" />
+          <NavigationProperty Name="vendre" Relationship="Self.FK__vendre__Identifi__267ABA7A" FromRole="Fournisseur" ToRole="vendre" />
+        </EntityType>
+        <EntityType Name="Livraison">
+          <Key>
+            <PropertyRef Name="IdentifiantLieuDeLivraison" />
+          </Key>
+          <Property Name="IdentifiantLieuDeLivraison" Type="Int64" Nullable="false" />
+          <Property Name="LivraisonPartielle" Type="Boolean" />
+          <Property Name="DateDeLivraison" Type="DateTime" Precision="3" />
+          <Property Name="NumeroDeLivraison" Type="Int64" />
+          <Property Name="BonDeLivraison" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IdentifiantCommande" Type="Int64" />
+          <NavigationProperty Name="Commande" Relationship="Self.FK__Livraison__Ident__239E4DCF" FromRole="Livraison" ToRole="Commande" />
+          <NavigationProperty Name="composer" Relationship="Self.FK__composer__Identf__2F10007B" FromRole="Livraison" ToRole="composer" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="IdentifiantProduit" />
+          </Key>
+          <Property Name="IdentifiantProduit" Type="Int64" Nullable="false" />
+          <Property Name="LibelleCourtDuProduit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LibelleLongDuProduit" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PhotoDuProduit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrixDachatDuProduit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ProduitActif" Type="Boolean" />
+          <Property Name="PrixHorsTaxe" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TVA" Type="Int64" />
+          <Property Name="IdentifiantRubrique" Type="Int64" />
+          <NavigationProperty Name="composer" Relationship="Self.FK__composer__Identi__2E1BDC42" FromRole="Produit" ToRole="composer" />
+          <NavigationProperty Name="contenir" Relationship="Self.FK__contenir__Identi__2A4B4B5E" FromRole="Produit" ToRole="contenir" />
+          <NavigationProperty Name="RubriqueDuProduit" Relationship="Self.FK__Produit__Identif__1367E606" FromRole="Produit" ToRole="RubriqueDuProduit" />
+          <NavigationProperty Name="vendre" Relationship="Self.FK__vendre__Identifi__276EDEB3" FromRole="Produit" ToRole="vendre" />
+        </EntityType>
+        <EntityType Name="RubriqueDuProduit">
+          <Key>
+            <PropertyRef Name="IdentifiantRubrique" />
+          </Key>
+          <Property Name="IdentifiantRubrique" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomRubrique" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Rubrique_principale" Type="Int64" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__Produit__Identif__1367E606" FromRole="RubriqueDuProduit" ToRole="Produit" />
+          <NavigationProperty Name="RubriqueDuProduit1" Relationship="Self.FK__RubriqueD__Rubri__108B795B" FromRole="RubriqueDuProduit" ToRole="RubriqueDuProduit1" />
+          <NavigationProperty Name="RubriqueDuProduit2" Relationship="Self.FK__RubriqueD__Rubri__108B795B" FromRole="RubriqueDuProduit1" ToRole="RubriqueDuProduit" />
+        </EntityType>
+        <EntityType Name="Service_Commercial">
+          <Key>
+            <PropertyRef Name="IdentifiantServiceCommercial" />
+          </Key>
+          <Property Name="IdentifiantServiceCommercial" Type="Int64" Nullable="false" />
+          <Property Name="NomDuCommercial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrenomDuCommercial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AdresseDuCommercial" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="VilleDuCommercial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CodePostalDuCommercial" Type="Int64" />
+          <Property Name="TelephoneDuCommercial" Type="Int64" />
+          <Property Name="ClientParticulier" Type="Boolean" />
+          <Property Name="AdresseMailDuCommercial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__Identifi__1A14E395" FromRole="Service_Commercial" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="vendre">
+          <Key>
+            <PropertyRef Name="IdentifiantFournisseur" />
+            <PropertyRef Name="IdentifiantProduit" />
+          </Key>
+          <Property Name="ReferenceFournisseurDuProduit" Type="Int64" />
+          <Property Name="IdentifiantFournisseur" Type="Int64" Nullable="false" />
+          <Property Name="IdentifiantProduit" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Fournisseur" Relationship="Self.FK__vendre__Identifi__267ABA7A" FromRole="vendre" ToRole="Fournisseur" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__vendre__Identifi__276EDEB3" FromRole="vendre" ToRole="Produit" />
+        </EntityType>
+        <Association Name="FK__Client__Identifi__1A14E395">
+          <End Role="Service_Commercial" Type="Self.Service_Commercial" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service_Commercial">
+              <PropertyRef Name="IdentifiantServiceCommercial" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdentifiantServiceCommercial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commande__Identi__1ED998B2">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdentifiantClient" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="IdentifiantClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commande__Numero__1FCDBCEB">
+          <End Role="Facture" Type="Self.Facture" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facture">
+              <PropertyRef Name="NumeroFacture" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="NumeroFacture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenir__Identi__2B3F6F97">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="1" />
+          <End Role="contenir" Type="Self.contenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Principal>
+            <Dependent Role="contenir">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Livraison__Ident__239E4DCF">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Livraison" Type="Self.Livraison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Principal>
+            <Dependent Role="Livraison">
+              <PropertyRef Name="IdentifiantCommande" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__composer__Identf__2F10007B">
+          <End Role="Livraison" Type="Self.Livraison" Multiplicity="1" />
+          <End Role="composer" Type="Self.composer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livraison">
+              <PropertyRef Name="IdentifiantLieuDeLivraison" />
+            </Principal>
+            <Dependent Role="composer">
+              <PropertyRef Name="IdentfiantLieuDeLivraison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__composer__Identi__2E1BDC42">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="composer" Type="Self.composer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="composer">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenir__Identi__2A4B4B5E">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="contenir" Type="Self.contenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="contenir">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendre__Identifi__267ABA7A">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="1" />
+          <End Role="vendre" Type="Self.vendre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="IdentifiantFournisseur" />
+            </Principal>
+            <Dependent Role="vendre">
+              <PropertyRef Name="IdentifiantFournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produit__Identif__1367E606">
+          <End Role="RubriqueDuProduit" Type="Self.RubriqueDuProduit" Multiplicity="0..1" />
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RubriqueDuProduit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendre__Identifi__276EDEB3">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="1" />
+          <End Role="vendre" Type="Self.vendre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Principal>
+            <Dependent Role="vendre">
+              <PropertyRef Name="IdentifiantProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RubriqueD__Rubri__108B795B">
+          <End Role="RubriqueDuProduit" Type="Self.RubriqueDuProduit" Multiplicity="0..1" />
+          <End Role="RubriqueDuProduit1" Type="Self.RubriqueDuProduit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RubriqueDuProduit">
+              <PropertyRef Name="IdentifiantRubrique" />
+            </Principal>
+            <Dependent Role="RubriqueDuProduit1">
+              <PropertyRef Name="Rubrique_principale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fil_rougeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Commande" EntityType="Self.Commande" />
+          <EntitySet Name="composer" EntityType="Self.composer" />
+          <EntitySet Name="contenir" EntityType="Self.contenir" />
+          <EntitySet Name="Facture" EntityType="Self.Facture" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" />
+          <EntitySet Name="Livraison" EntityType="Self.Livraison" />
+          <EntitySet Name="Produit" EntityType="Self.Produit" />
+          <EntitySet Name="RubriqueDuProduit" EntityType="Self.RubriqueDuProduit" />
+          <EntitySet Name="Service_Commercial" EntityType="Self.Service_Commercial" />
+          <EntitySet Name="vendre" EntityType="Self.vendre" />
+          <AssociationSet Name="FK__Client__Identifi__1A14E395" Association="Self.FK__Client__Identifi__1A14E395">
+            <End Role="Service_Commercial" EntitySet="Service_Commercial" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commande__Identi__1ED998B2" Association="Self.FK__Commande__Identi__1ED998B2">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commande__Numero__1FCDBCEB" Association="Self.FK__Commande__Numero__1FCDBCEB">
+            <End Role="Facture" EntitySet="Facture" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenir__Identi__2B3F6F97" Association="Self.FK__contenir__Identi__2B3F6F97">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="contenir" EntitySet="contenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Livraison__Ident__239E4DCF" Association="Self.FK__Livraison__Ident__239E4DCF">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="Livraison" EntitySet="Livraison" />
+          </AssociationSet>
+          <AssociationSet Name="FK__composer__Identf__2F10007B" Association="Self.FK__composer__Identf__2F10007B">
+            <End Role="Livraison" EntitySet="Livraison" />
+            <End Role="composer" EntitySet="composer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__composer__Identi__2E1BDC42" Association="Self.FK__composer__Identi__2E1BDC42">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="composer" EntitySet="composer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenir__Identi__2A4B4B5E" Association="Self.FK__contenir__Identi__2A4B4B5E">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="contenir" EntitySet="contenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendre__Identifi__267ABA7A" Association="Self.FK__vendre__Identifi__267ABA7A">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="vendre" EntitySet="vendre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produit__Identif__1367E606" Association="Self.FK__Produit__Identif__1367E606">
+            <End Role="RubriqueDuProduit" EntitySet="RubriqueDuProduit" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendre__Identifi__276EDEB3" Association="Self.FK__vendre__Identifi__276EDEB3">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="vendre" EntitySet="vendre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RubriqueD__Rubri__108B795B" Association="Self.FK__RubriqueD__Rubri__108B795B">
+            <End Role="RubriqueDuProduit" EntitySet="RubriqueDuProduit" />
+            <End Role="RubriqueDuProduit1" EntitySet="RubriqueDuProduit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fil_rougeModelStoreContainer" CdmEntityContainer="fil_rougeEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="fil_rougeModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IdentifiantClient" ColumnName="IdentifiantClient" />
+                <ScalarProperty Name="ReferenceDuClient" ColumnName="ReferenceDuClient" />
+                <ScalarProperty Name="NomDuClient" ColumnName="NomDuClient" />
+                <ScalarProperty Name="PrenomDuClient" ColumnName="PrenomDuClient" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="AdresseDuClient" ColumnName="AdresseDuClient" />
+                <ScalarProperty Name="VilleDuClient" ColumnName="VilleDuClient" />
+                <ScalarProperty Name="CodePostalDuClient" ColumnName="CodePostalDuClient" />
+                <ScalarProperty Name="AdresseMailDuClient" ColumnName="AdresseMailDuClient" />
+                <ScalarProperty Name="TelephoneDuClient" ColumnName="TelephoneDuClient" />
+                <ScalarProperty Name="IdentifiantServiceCommercial" ColumnName="IdentifiantServiceCommercial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commande">
+            <EntityTypeMapping TypeName="fil_rougeModel.Commande">
+              <MappingFragment StoreEntitySet="Commande">
+                <ScalarProperty Name="IdentifiantCommande" ColumnName="IdentifiantCommande" />
+                <ScalarProperty Name="NumeroDeCommande" ColumnName="NumeroDeCommande" />
+                <ScalarProperty Name="DateDeCommande" ColumnName="DateDeCommande" />
+                <ScalarProperty Name="AdresseDeLivraison" ColumnName="AdresseDeLivraison" />
+                <ScalarProperty Name="VilleDeLivraison" ColumnName="VilleDeLivraison" />
+                <ScalarProperty Name="CodePostalDeLivraison" ColumnName="CodePostalDeLivraison" />
+                <ScalarProperty Name="PrixTotalCommande" ColumnName="PrixTotalCommande" />
+                <ScalarProperty Name="AdresseDeFacturation" ColumnName="AdresseDeFacturation" />
+                <ScalarProperty Name="VilleDeFacturation" ColumnName="VilleDeFacturation" />
+                <ScalarProperty Name="CodePostalDeFacturation" ColumnName="CodePostalDeFacturation" />
+                <ScalarProperty Name="IdentifiantClient" ColumnName="IdentifiantClient" />
+                <ScalarProperty Name="NumeroFacture" ColumnName="NumeroFacture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="composer">
+            <EntityTypeMapping TypeName="fil_rougeModel.composer">
+              <MappingFragment StoreEntitySet="composer">
+                <ScalarProperty Name="quantite_livrer" ColumnName="quantite_livrer" />
+                <ScalarProperty Name="PrixVendu" ColumnName="PrixVendu" />
+                <ScalarProperty Name="IdentifiantProduit" ColumnName="IdentifiantProduit" />
+                <ScalarProperty Name="IdentfiantLieuDeLivraison" ColumnName="IdentfiantLieuDeLivraison" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contenir">
+            <EntityTypeMapping TypeName="fil_rougeModel.contenir">
+              <MappingFragment StoreEntitySet="contenir">
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="PrixDeVente" ColumnName="PrixDeVente" />
+                <ScalarProperty Name="IdentifiantProduit" ColumnName="IdentifiantProduit" />
+                <ScalarProperty Name="IdentifiantCommande" ColumnName="IdentifiantCommande" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facture">
+            <EntityTypeMapping TypeName="fil_rougeModel.Facture">
+              <MappingFragment StoreEntitySet="Facture">
+                <ScalarProperty Name="NumeroFacture" ColumnName="NumeroFacture" />
+                <ScalarProperty Name="ModePaiementFacture" ColumnName="ModePaiementFacture" />
+                <ScalarProperty Name="DateDeFacture" ColumnName="DateDeFacture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fournisseur">
+            <EntityTypeMapping TypeName="fil_rougeModel.Fournisseur">
+              <MappingFragment StoreEntitySet="Fournisseur">
+                <ScalarProperty Name="IdentifiantFournisseur" ColumnName="IdentifiantFournisseur" />
+                <ScalarProperty Name="Importateur" ColumnName="Importateur" />
+                <ScalarProperty Name="NomDuFournisseur" ColumnName="NomDuFournisseur" />
+                <ScalarProperty Name="AdresseDuFournisseur" ColumnName="AdresseDuFournisseur" />
+                <ScalarProperty Name="VilleDuFournisseur" ColumnName="VilleDuFournisseur" />
+                <ScalarProperty Name="CodePostalDuFournisseur" ColumnName="CodePostalDuFournisseur" />
+                <ScalarProperty Name="AdresseMailDuFournisseur" ColumnName="AdresseMailDuFournisseur" />
+                <ScalarProperty Name="TelephoneDuFournisseur" ColumnName="TelephoneDuFournisseur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Livraison">
+            <EntityTypeMapping TypeName="fil_rougeModel.Livraison">
+              <MappingFragment StoreEntitySet="Livraison">
+                <ScalarProperty Name="IdentifiantLieuDeLivraison" ColumnName="IdentifiantLieuDeLivraison" />
+                <ScalarProperty Name="LivraisonPartielle" ColumnName="LivraisonPartielle" />
+                <ScalarProperty Name="DateDeLivraison" ColumnName="DateDeLivraison" />
+                <ScalarProperty Name="NumeroDeLivraison" ColumnName="NumeroDeLivraison" />
+                <ScalarProperty Name="BonDeLivraison" ColumnName="BonDeLivraison" />
+                <ScalarProperty Name="IdentifiantCommande" ColumnName="IdentifiantCommande" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produit">
+            <EntityTypeMapping TypeName="fil_rougeModel.Produit">
+              <MappingFragment StoreEntitySet="Produit">
+                <ScalarProperty Name="IdentifiantProduit" ColumnName="IdentifiantProduit" />
+                <ScalarProperty Name="LibelleCourtDuProduit" ColumnName="LibelleCourtDuProduit" />
+                <ScalarProperty Name="LibelleLongDuProduit" ColumnName="LibelleLongDuProduit" />
+                <ScalarProperty Name="PhotoDuProduit" ColumnName="PhotoDuProduit" />
+                <ScalarProperty Name="PrixDachatDuProduit" ColumnName="PrixDachatDuProduit" />
+                <ScalarProperty Name="ProduitActif" ColumnName="ProduitActif" />
+                <ScalarProperty Name="PrixHorsTaxe" ColumnName="PrixHorsTaxe" />
+                <ScalarProperty Name="TVA" ColumnName="TVA" />
+                <ScalarProperty Name="IdentifiantRubrique" ColumnName="IdentifiantRubrique" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RubriqueDuProduit">
+            <EntityTypeMapping TypeName="fil_rougeModel.RubriqueDuProduit">
+              <MappingFragment StoreEntitySet="RubriqueDuProduit">
+                <ScalarProperty Name="IdentifiantRubrique" ColumnName="IdentifiantRubrique" />
+                <ScalarProperty Name="NomRubrique" ColumnName="NomRubrique" />
+                <ScalarProperty Name="Rubrique_principale" ColumnName="Rubrique_principale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_Commercial">
+            <EntityTypeMapping TypeName="fil_rougeModel.Service_Commercial">
+              <MappingFragment StoreEntitySet="Service_Commercial">
+                <ScalarProperty Name="IdentifiantServiceCommercial" ColumnName="IdentifiantServiceCommercial" />
+                <ScalarProperty Name="NomDuCommercial" ColumnName="NomDuCommercial" />
+                <ScalarProperty Name="PrenomDuCommercial" ColumnName="PrenomDuCommercial" />
+                <ScalarProperty Name="AdresseDuCommercial" ColumnName="AdresseDuCommercial" />
+                <ScalarProperty Name="VilleDuCommercial" ColumnName="VilleDuCommercial" />
+                <ScalarProperty Name="CodePostalDuCommercial" ColumnName="CodePostalDuCommercial" />
+                <ScalarProperty Name="TelephoneDuCommercial" ColumnName="TelephoneDuCommercial" />
+                <ScalarProperty Name="ClientParticulier" ColumnName="ClientParticulier" />
+                <ScalarProperty Name="AdresseMailDuCommercial" ColumnName="AdresseMailDuCommercial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendre">
+            <EntityTypeMapping TypeName="fil_rougeModel.vendre">
+              <MappingFragment StoreEntitySet="vendre">
+                <ScalarProperty Name="ReferenceFournisseurDuProduit" ColumnName="ReferenceFournisseurDuProduit" />
+                <ScalarProperty Name="IdentifiantFournisseur" ColumnName="IdentifiantFournisseur" />
+                <ScalarProperty Name="IdentifiantProduit" ColumnName="IdentifiantProduit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1AA0B5D7-4B28-491F-BAA0-3A57AC217B68}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication2</RootNamespace>
+    <AssemblyName>WindowsFormsApplication2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WindowsFormsApplication2.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="choix_client_inactif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choix_client_inactif.Designer.cs">
+      <DependentUpon>choix_client_inactif.cs</DependentUpon>
+    </Compile>
+    <Compile Include="consultation_catalogue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="consultation_catalogue.Designer.cs">
+      <DependentUpon>consultation_catalogue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choix_fiche client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choix_fiche client.Designer.cs">
+      <DependentUpon>choix_fiche client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fiche_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fiche_client.Designer.cs">
+      <DependentUpon>fiche_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="consulter_commande.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="consulter_commande.Designer.cs">
+      <DependentUpon>consulter_commande.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choisir client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choisir client.Designer.cs">
+      <DependentUpon>choisir client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fiche_client_ajout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fiche_client_ajout.Designer.cs">
+      <DependentUpon>fiche_client_ajout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Premiere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Premiere.Designer.cs">
+      <DependentUpon>Form_Premiere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="recap commande_choix de paiement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recap commande_choix de paiement.Designer.cs">
+      <DependentUpon>recap commande_choix de paiement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Choix_facture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Choix_facture.Designer.cs">
+      <DependentUpon>Choix_facture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facture.Designer.cs">
+      <DependentUpon>Facture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="requete_chiffre_d%27affaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="requete_chiffre_d%27affaire.Designer.cs">
+      <DependentUpon>requete_chiffre_d%27affaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modification_fiche_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modification_fiche_client.Designer.cs">
+      <DependentUpon>modification_fiche_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="saisie_commande_fil_rouge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="saisie_commande_fil_rouge.Designer.cs">
+      <DependentUpon>saisie_commande_fil_rouge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="page_accueil_fil_rouge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="page_accueil_fil_rouge.Designer.cs">
+      <DependentUpon>page_accueil_fil_rouge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login_fil_rouge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login_fil_rouge.Designer.cs">
+      <DependentUpon>login_fil_rouge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rechercher_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rechercher_client.Designer.cs">
+      <DependentUpon>rechercher_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suivi_livraison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suivi_livraison.Designer.cs">
+      <DependentUpon>Suivi_livraison.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAclient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAclient.Designer.cs">
+      <DependentUpon>CAclient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="choisir client.resx">
+      <DependentUpon>choisir client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choix_client_inactif.resx">
+      <DependentUpon>choix_client_inactif.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choix_fiche client.resx">
+      <DependentUpon>choix_fiche client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fiche_client_ajout.resx">
+      <DependentUpon>fiche_client_ajout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Premiere.resx">
+      <DependentUpon>Form_Premiere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rechercher_client.resx">
+      <DependentUpon>rechercher_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="consultation_catalogue.resx">
+      <DependentUpon>consultation_catalogue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="consulter_commande.resx">
+      <DependentUpon>consulter_commande.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fiche_client.resx">
+      <DependentUpon>fiche_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modification_fiche_client.resx">
+      <DependentUpon>modification_fiche_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="page_accueil_fil_rouge.resx">
+      <DependentUpon>page_accueil_fil_rouge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login_fil_rouge.resx">
+      <DependentUpon>login_fil_rouge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Choix_facture.resx">
+      <DependentUpon>Choix_facture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facture.resx">
+      <DependentUpon>Facture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suivi_livraison.resx">
+      <DependentUpon>Suivi_livraison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAclient.resx">
+      <DependentUpon>CAclient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="recap commande_choix de paiement.resx">
+      <DependentUpon>recap commande_choix de paiement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="requete_chiffre_d%27affaire.resx">
+      <DependentUpon>requete_chiffre_d%27affaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="saisie_commande_fil_rouge.resx">
+      <DependentUpon>saisie_commande_fil_rouge.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo village green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image_fil_rouge_cindy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL_fil_rouge\DAL_fil_rouge.csproj">
+      <Project>{0f0b5eb0-d446-4ff8-ab74-29fe77418205}</Project>
+      <Name>DAL_fil_rouge</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
