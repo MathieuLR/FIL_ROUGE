@@ -76,5 +76,10 @@ namespace WindowsFormsApplication2
             rechercheclient.Show();
 
         }
+
+        private void button_retour_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

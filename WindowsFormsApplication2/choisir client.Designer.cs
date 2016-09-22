@@ -43,6 +43,7 @@
             this.button_retour.TabIndex = 4;
             this.button_retour.Text = "retour";
             this.button_retour.UseVisualStyleBackColor = true;
+            this.button_retour.Click += new System.EventHandler(this.button_retour_Click);
             // 
             // button_valider
             // 
