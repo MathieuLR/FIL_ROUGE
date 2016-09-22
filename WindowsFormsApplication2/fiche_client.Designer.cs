@@ -87,7 +87,6 @@
             this.textbox_service_com = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.button_supprimer_client = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox_prof.SuspendLayout();
             this.groupBox_particulier.SuspendLayout();
             this.panel_civilite.SuspendLayout();
@@ -319,6 +318,7 @@
             this.button2.TabIndex = 89;
             this.button2.Text = "Retour";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -624,21 +624,11 @@
             this.button_supprimer_client.UseVisualStyleBackColor = true;
             this.button_supprimer_client.Click += new System.EventHandler(this.button_supprimer_client_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(93, 766);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 112;
-            this.button3.Text = "Retour";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // fiche_client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 801);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button_supprimer_client);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.textbox_service_com);
@@ -752,6 +742,5 @@
         private System.Windows.Forms.TextBox textbox_service_com;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button_supprimer_client;
-        private System.Windows.Forms.Button button3;
     }
 }
