@@ -78,12 +78,13 @@ CREATE TABLE Client(
 	NumeroSiret         BIGINT,
 	NomEnseigne         VARCHAR (250),
 	ComplementAdresse   VARCHAR (250),
-	AdresseDeLivraisonClient      VARCHAR (250) NOT NULL,
-	ComplementAdresseClient       VARCHAR (250) NOT NULL,
-	VilleDeLivraisonClient        VARCHAR (250) NOT NULL,
-	CodePostalDeLivraisonClient   VARCHAR (250) NOT NULL,
+	AdresseDeLivraisonClient      VARCHAR (250),
+	ComplementAdresseClient       VARCHAR (250),
+	VilleDeLivraisonClient        VARCHAR (250),
+	CodePostalDeLivraisonClient   VARCHAR (250),
 	ClientParticulier            bit,
 	Sexe                         bit,
+	ClientActif                  bit,
 	IdentifiantServiceCommercial BIGINT REFERENCES Service_Commercial(IdentifiantServiceCommercial)
 
 )
